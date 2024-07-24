@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	boardpackage "github.com/pity7736/snake_go/src/domain/board"
+	"github.com/pity7736/snake_go/src/domain/constants"
 	directionpackage "github.com/pity7736/snake_go/src/domain/direction"
 	positionpackage "github.com/pity7736/snake_go/src/domain/position"
 	"github.com/stretchr/testify/assert"
@@ -138,7 +139,7 @@ func TestCookieIsCreated(t *testing.T) {
 	count := 0
 	for _, row := range board.Cells() {
 		for _, cell := range row {
-			if cell == '#' {
+			if cell == constants.COOKIE_CHARACTER {
 				count++
 			}
 		}
@@ -223,7 +224,7 @@ func getCookiePosition(board *boardpackage.Board) positionpackage.Position {
 	var position positionpackage.Position
 	for i, row := range board.Cells() {
 		for j, cell := range row {
-			if cell == '#' {
+			if cell == constants.COOKIE_CHARACTER {
 				position = positionpackage.New(int8(i), int8(j))
 			}
 		}
@@ -235,7 +236,7 @@ func getSnakePosition(board *boardpackage.Board) positionpackage.Position {
 	var position positionpackage.Position
 	for i, row := range board.Cells() {
 		for j, cell := range row {
-			if cell == '$' {
+			if cell == constants.SNAKE_HEAD_CHARACTER {
 				position = positionpackage.New(int8(i), int8(j))
 			}
 		}
@@ -247,7 +248,7 @@ func checkOneSnakeHead(cells [][]rune) bool {
 	count := 0
 	for _, row := range cells {
 		for _, cell := range row {
-			if cell == '$' {
+			if cell == constants.SNAKE_HEAD_CHARACTER {
 				count++
 			}
 		}
@@ -256,13 +257,13 @@ func checkOneSnakeHead(cells [][]rune) bool {
 }
 
 func isSnakeHeadInPosition(cells [][]rune, position positionpackage.Position) bool {
-	return cells[position.Row()][position.Column()] == '$'
+	return cells[position.Row()][position.Column()] == constants.SNAKE_HEAD_CHARACTER
 }
 
 func isSnakeBodyInPosition(cells [][]rune, position positionpackage.Position) bool {
-	return cells[position.Row()][position.Column()] == '-'
+	return cells[position.Row()][position.Column()] == constants.SNAKE_BODY_CHARACTER
 }
 
 func isCellEmpty(cells [][]rune, position positionpackage.Position) bool {
-	return cells[position.Row()][position.Column()] == ' '
+	return cells[position.Row()][position.Column()] == constants.EMPTY_VALUE_CHARACTER
 }

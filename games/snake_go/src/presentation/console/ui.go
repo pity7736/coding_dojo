@@ -6,6 +6,7 @@ import (
 	"time"
 
 	boardpackage "github.com/pity7736/snake_go/src/domain/board"
+	"github.com/pity7736/snake_go/src/domain/constants"
 	directionpackage "github.com/pity7736/snake_go/src/domain/direction"
 )
 
@@ -23,7 +24,7 @@ func (self *ConsoleUI) Show(board *boardpackage.Board) {
 	for _, row := range board.Cells() {
 		fmt.Print("|")
 		for _, cell := range row {
-			if cell == ' ' {
+			if cell == constants.EMPTY_VALUE_CHARACTER {
 				fmt.Print("  ")
 			} else {
 				fmt.Printf("%c ", cell)

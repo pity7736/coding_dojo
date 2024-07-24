@@ -3,6 +3,7 @@ package boardpackage
 import (
 	"math/rand/v2"
 
+	"github.com/pity7736/snake_go/src/domain/constants"
 	directionpackage "github.com/pity7736/snake_go/src/domain/direction"
 	positionpackage "github.com/pity7736/snake_go/src/domain/position"
 	snakepackage "github.com/pity7736/snake_go/src/domain/snake"
@@ -32,7 +33,7 @@ func New() *Board {
 }
 
 func (self *Board) init() {
-	self.setValueInCells(self.snake.Head(), '$')
+	self.setValueInCells(self.snake.Head(), constants.SNAKE_HEAD_CHARACTER)
 	self.createCookie()
 }
 
@@ -56,14 +57,14 @@ func (self *Board) MoveSnake(direction directionpackage.Direction) {
 			self.snake.Eat()
 			self.createCookie()
 		} else {
-			self.setValueInCells(tailSnakePosition, ' ')
+			self.setValueInCells(tailSnakePosition, constants.EMPTY_VALUE_CHARACTER)
 		}
 		self.setSnake()
 	}
 }
 
 func (self *Board) isCookieInPosition(position positionpackage.Position) bool {
-	return self.cells[position.Row()][position.Column()] == '#'
+	return self.cells[position.Row()][position.Column()] == constants.COOKIE_CHARACTER
 }
 
 func (self *Board) isPositionWithinBoard(position positionpackage.Position) bool {
@@ -79,7 +80,7 @@ func (self *Board) createCookie() {
 		int8(rand.IntN(int(self.height))),
 	)
 	if self.isCellEmpty(position) {
-		self.setValueInCells(position, '#')
+		self.setValueInCells(position, constants.COOKIE_CHARACTER)
 	} else {
 		self.createCookie()
 	}
@@ -91,9 +92,9 @@ func (self *Board) isCellEmpty(position positionpackage.Position) bool {
 
 func (self *Board) setSnake() {
 	if !self.SnakeHasCrashed() {
-		self.setValueInCells(self.snake.Head(), '$')
+		self.setValueInCells(self.snake.Head(), constants.SNAKE_HEAD_CHARACTER)
 		for _, position := range self.snake.Body() {
-			self.setValueInCells(position, '-')
+			self.setValueInCells(position, constants.SNAKE_BODY_CHARACTER)
 		}
 	}
 }
