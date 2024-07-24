@@ -17,8 +17,17 @@ func New(headPosition positionpackage.Position) *Snake {
 }
 
 func (self *Snake) Move(direction directionpackage.Direction) {
+	body := make([]positionpackage.Position, len(self.body))
+	copy(body, self.body)
 	self.previousTailPosition = self.Tail()
 	self.body[0] = self.Head().Move(direction)
+	for i := 1; i < len(self.body); i++ {
+		self.body[i] = body[i-1]
+	}
+}
+
+func (self *Snake) Eat() {
+	self.body = append(self.body, self.previousTailPosition)
 }
 
 func (self *Snake) Tail() positionpackage.Position {
@@ -27,4 +36,8 @@ func (self *Snake) Tail() positionpackage.Position {
 
 func (self *Snake) Head() positionpackage.Position {
 	return self.body[0]
+}
+
+func (self *Snake) Body() []positionpackage.Position {
+	return self.body[1:]
 }
