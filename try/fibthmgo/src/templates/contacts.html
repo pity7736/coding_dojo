@@ -1,0 +1,15 @@
+{{ define "contacts" }}
+
+<div>
+    <form hx-post="/contacts">
+        <label for="name">Name</label>
+        <input name="name" placeholder="name">
+
+        <label for="email">Email</label>
+        <input name="email" type="email" placeholder="email">
+
+        <button type="submit">Send</button>
+    </form>
+
+</div>
+{{ end }}

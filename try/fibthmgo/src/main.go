@@ -2,6 +2,8 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/log"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/html/v2"
 )
 
@@ -15,17 +17,26 @@ func (d data) GetTitle() string {
 
 func main() {
 	engine := html.New("./src/templates", ".html")
-	app := fiber.New(fiber.Config{Views: engine})
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
+	app.Use(logger.New())
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-	app.Get("/t", func(c *fiber.Ctx) error {
-		// data := make(map[string]string, 1)
-		// data["title"] = "whatever"
 		data := data{title: "hola"}
-		return c.Render("index", data)
+		return c.Render("base", data)
 	})
 
-	app.Listen(":3000")
+	app.Get("/contacts", func(c *fiber.Ctx) error {
+		data := data{title: "hola"}
+		return c.Render("base", data)
+	})
+
+	app.Post("/contacts", func(c *fiber.Ctx) error {
+		c.Status(201)
+		data := data{title: "aoeuaoeu"}
+		return c.Render("base", data)
+	})
+
+	log.Fatal(app.Listen(":3000"))
 }

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
     <title>Main</title>
   </head>
 
   <body>
-    {{embed}}
+    {{template "index" . }}
+    {{template "contacts" . }}
   </body>
 </html>
