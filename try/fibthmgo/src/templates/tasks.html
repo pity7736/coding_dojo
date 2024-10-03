@@ -1,0 +1,26 @@
+{{ define "tasks" }}
+    <div id="tasks">
+        <form hx-post="/tasks" {{ if .Tasks }} hx-target="#tasks-list" hx-swap="afterbegin" {{ else }} hx-target="#tasks" {{ end }}>
+            <label for="name">Name</label>
+            <input name="name" placeholder="name">
+
+            <button type="submit">Send</button>
+        </form>
+        {{ if .Tasks }}
+            <h2>tasks</h2>
+            <div id="tasks-list"></div>
+                {{ range .Tasks }}
+                    {{ template "task" . }}
+                {{ end }}
+            </div>
+        {{ else }}
+            <p>No hay tareas</p>
+        {{ end }}
+    </div>
+{{ end }}
+
+{{ define "task" }}
+    <div style="display: flex;">
+        <b>Name: </b> <span>{{ .Name }}</span>
+    </div>
+{{ end }}

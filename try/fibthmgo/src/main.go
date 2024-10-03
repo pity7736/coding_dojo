@@ -8,34 +8,43 @@ import (
 )
 
 type data struct {
-	title string
+	Tasks []task
 }
 
-func (d data) GetTitle() string {
-	return d.title
+type task struct {
+	Name string
+}
+
+func newData() *data {
+	tasks := make([]task, 0, 5)
+	return &data{Tasks: tasks}
 }
 
 func main() {
 	engine := html.New("./src/templates", ".html")
 	app := fiber.New(fiber.Config{
-		Views: engine,
+		Views:       engine,
+		ViewsLayout: "base",
 	})
 	app.Use(logger.New())
-
+	data := newData()
 	app.Get("/", func(c *fiber.Ctx) error {
-		data := data{title: "hola"}
-		return c.Render("base", data)
+		return c.Render("index", nil)
+	})
+	app.Get("/tasks", func(c *fiber.Ctx) error {
+		return c.Render("tasks", data)
 	})
 
-	app.Get("/contacts", func(c *fiber.Ctx) error {
-		data := data{title: "hola"}
-		return c.Render("base", data)
-	})
-
-	app.Post("/contacts", func(c *fiber.Ctx) error {
+	app.Post("/tasks", func(c *fiber.Ctx) error {
 		c.Status(201)
-		data := data{title: "aoeuaoeu"}
-		return c.Render("base", data)
+		task := task{
+			Name: c.FormValue("name"),
+		}
+		data.Tasks = append(data.Tasks, task)
+		if len(data.Tasks) == 1 {
+			return c.Render("tasks", data, "")
+		}
+		return c.Render("task", task, "")
 	})
 
 	log.Fatal(app.Listen(":3000"))
