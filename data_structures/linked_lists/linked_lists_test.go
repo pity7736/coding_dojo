@@ -203,4 +203,44 @@ func TestLinkedListShould(t *testing.T) {
 		}
 	})
 
+	t.Run("reverse a list of two nodes", func(t *testing.T) {
+		ll := linkedlists.New()
+		ll.Append(1)
+		ll.Append(2)
+
+		ll.Reverse()
+
+		first, _ := ll.Get(0)
+		second, _ := ll.Get(1)
+
+		if first != 2 {
+			t.Errorf("expected 2, got %d", first)
+		}
+		if second != 1 {
+			t.Errorf("expected 1, got %d", second)
+		}
+	})
+
+	t.Run("reverse a list of three nodes", func(t *testing.T) {
+		ll := linkedlists.New()
+		ll.Append(1)
+		ll.Append(2)
+		ll.Append(3)
+
+		ll.Reverse()
+
+		first, _ := ll.Get(0)
+		second, _ := ll.Get(1)
+		third, _ := ll.Get(2)
+
+		if first != 3 {
+			t.Errorf("expected 3, got %d", first)
+		}
+		if second != 2 {
+			t.Errorf("expected 2, got %d", second)
+		}
+		if third != 1 {
+			t.Errorf("expected 1, got %d", third)
+		}
+	})
 }

@@ -7,8 +7,8 @@ type node struct {
 	next  *node
 }
 
-func newNode(value int, next *node) *node {
-	return &node{value: value, next: next}
+func newNode(value int) *node {
+	return &node{value: value}
 }
 
 func (self *node) Value() int {
@@ -30,7 +30,7 @@ func (self *LinkedList) Head() *node {
 }
 
 func (self *LinkedList) Append(value int) {
-	n := newNode(value, nil)
+	n := newNode(value)
 	if self.head == nil {
 		self.head = n
 		self.tail = n
@@ -84,4 +84,17 @@ func (self *LinkedList) Delete(value int) error {
 
 func (self *LinkedList) Len() int {
 	return self.lenght
+}
+
+func (self *LinkedList) Reverse() {
+	current := self.head
+	var prev *node
+	self.tail = current
+	for current != nil {
+		next := current.next
+		current.next = prev
+		prev = current
+		current = next
+	}
+	self.head = prev
 }
