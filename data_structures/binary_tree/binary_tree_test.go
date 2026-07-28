@@ -1,7 +1,7 @@
 package binarytree_test
 
 import (
-	"coding_dojo/data_structures/binary_tree/go"
+	"coding_dojo/data_structures/binary_tree"
 	"testing"
 )
 

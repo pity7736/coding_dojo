@@ -1,7 +1,7 @@
 package criticalpath_test
 
 import (
-	"coding_dojo/exercises/critical_path/go"
+	"coding_dojo/exercises/critical_path"
 	"reflect"
 	"testing"
 )
