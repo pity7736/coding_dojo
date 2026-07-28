@@ -1,4 +1,4 @@
-package exercises
+package criticalpath
 
 type Service struct {
 	Dur  int

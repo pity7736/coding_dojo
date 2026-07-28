@@ -1,7 +1,7 @@
 package linkedlists_test
 
 import (
-	"data_structures/linked_lists"
+	"coding_dojo/data_structures/linked_lists/go"
 	"testing"
 )
 

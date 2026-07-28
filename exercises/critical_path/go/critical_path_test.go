@@ -1,20 +1,20 @@
-package exercises_test
+package criticalpath_test
 
 import (
-	"data_structures/exercises"
+	"coding_dojo/exercises/critical_path/go"
 	"reflect"
 	"testing"
 )
 
 func TestCriticalPathFinderShould(t *testing.T) {
 	t.Run("find the critical path", func(t *testing.T) {
-		services := map[string]exercises.Service{
+		services := map[string]criticalpath.Service{
 			"db":      {Dur: 5, Deps: []string{}},
 			"cache":   {Dur: 2, Deps: []string{}},
 			"api":     {Dur: 3, Deps: []string{"db", "cache"}},
 			"gateway": {Dur: 4, Deps: []string{"api"}},
 		}
-		duration, criticalPath := exercises.FindCriticalPath(services)
+		duration, criticalPath := criticalpath.FindCriticalPath(services)
 
 		expectedDuration := 12
 		expectedPath := []string{"db", "api", "gateway"}
