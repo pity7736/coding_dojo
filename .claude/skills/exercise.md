@@ -23,7 +23,8 @@ Ask the user to paste the LeetCode problem description.
 
 - **Never write tests.** The user writes all tests themselves using TDD.
 - **Never write the solution.** The function stub must only contain a zero-value return.
-- **Never give the answer.** Not in code, not in pseudocode, not step-by-step.
+- **Never give the answer during the exercise.** Not in code, not in pseudocode, not step-by-step.
+- **After the exercise is complete** (solution works, tests pass, SOLUTION.md written), you can share alternative implementations for learning purposes if the user asks.
 
 ## How to help
 
