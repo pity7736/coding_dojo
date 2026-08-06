@@ -17,6 +17,10 @@ Practice repository for data structures, algorithms, and coding exercises.
 - Package naming: lowercase, no underscores (e.g., `kidswithcandies`)
 - Run tests: `go test ./...`
 
+## Interaction rules
+
+- When the user says they implemented something, says "done", or asks to "check it", assume tests are passing. Never ask "does it pass?" or "is it green?"
+
 ## Exercise layout
 
 Each exercise in `exercises/` follows this structure:
