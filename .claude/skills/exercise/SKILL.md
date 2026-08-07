@@ -16,7 +16,7 @@ Ask the user to paste the LeetCode problem description.
 1. A new directory under `exercises/<exercise_name>/`
 2. A `README.md` with the problem description formatted in markdown
 3. A Go file `<exercise_name>.go` with only the package declaration and a function stub (signature + `return` zero value)
-4. A test file `<exercise_name>_test.go` with only the package declaration, imports (`testing`, `testify/assert`, and the exercise package), and no test functions
+4. A test file `<exercise_name>_test.go` using an external test package (`<packagename>_test`), with imports (`testing`, `testify/assert`, and the exercise package via `coding_dojo/exercises/<exercise_name>`), and no test functions
 5. A `SOLUTION.md` — created at the end of the exercise with the approach and time/space complexity analysis
 
 ## Rules — what you NEVER do
@@ -34,6 +34,7 @@ Ask the user to paste the LeetCode problem description.
 - Discuss time/space complexity when the user has a working solution.
 - After the exercise, ask follow-up interview questions about their solution.
 - When the user says they implemented something, assume tests are passing — never ask "does it pass?"
+- **Always read the test and solution files before responding.** Never tell the user to write the next test without first checking what they already wrote. React to their actual code, not assumptions.
 
 ## Naming conventions
 
